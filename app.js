@@ -182,8 +182,6 @@ async function loadWbgt() {
     const data = await res.json();
     if (data.wbgt != null) {
       const color = WBGT_COLORS[data.level] || '#64748b';
-      document.getElementById('wbgt-header').innerHTML =
-        `<span class="wbgt-pill">🌡 ${data.wbgt}℃ <span class="wbgt-level">${data.level}</span></span>`;
       document.getElementById('wbgt-card-body').innerHTML = `
         <div class="wbgt-card-val" style="color:${color}">${data.wbgt}℃</div>
         <div>
