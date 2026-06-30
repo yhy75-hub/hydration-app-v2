@@ -4,10 +4,10 @@
 // ============================================================
 
 const CONFIG = {
-  FCM_PROJECT_ID: 'hydration-850bd',
+  FCM_PROJECT_ID: 'hydration-v2',
   SERVICE_ACCOUNT: {
-    client_email: 'firebase-adminsdk-fbsvc@hydration-850bd.iam.gserviceaccount.com',
-    private_key: '-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCycueYv++xRS0+\nS5aRYnps6GAZPm+c+TsCUW1M9Egs9KyiXxQcFa9T6lvXZYgjbMcmL6swbyxeW5uk\n610uGE+PwNdlVLRaBNjfZlnRzq6cWk1/wVO/XQ2TKLXOfOSwTDp2F8YM9nzXPbJl\nh6PEsN79A6dYWbBzekBlD/MaK3y1KkZ/GqAzmW3Yqr6RWbd6dHcag0W7xIUCEJrG\n6S37t4Y0qLYXavctZbop1HeHC3Ln3zsSpmxiO3WFikh6W8bL5mE2tESYLXl0mAHa\n5RNRFxbIsy5VlwC0ZKirsy3bzzOAgDXapMH6uniCD/aH0Bs6/dXJP7AUB/wTPCJj\nWX6KR0nhAgMBAAECggEABxVcJ7JJv/7ebtmRBd8eUTZQVzwvscVWZW8zmvaw6pZB\nR+DlOKqshvTCSxyY23V2T8fxYDbaMI+AxYUsEcKjCNz8p9qa3fO740f0rYkqNvhi\nLmhaDCTz/0kMyMrTc0M+swCaqtnPcZCoRShjKgaj1AW0uzifMkGdGViOsQr0Hwb4\nOe7qyLNsloqkh4JnLMWOG+p9jOVdNx92oAIw+rvMFVcuL7O32bsiw6eS9/TmX5qm\nwldRUCmsELvstVaCPl6bLUSX3LkIJkNj6ELANTQ47QsUxZRtRfEUcDJpxN2wGgb4\nL3yid9/a5evD6kADq90tlj2Avegx1V9qn5ge9wUOWQKBgQDZ2WYR6Who03cOpvjR\nAwQk9TK6NOOkKb4Mzdg1t7+Q02S4LpCpNHwgq7Fhj7V2aqJdE2808Sj93NQypzV5\nt2B1VpCmOUmrR2ZxH0bd6lWYxVuMNQYxCn30+ugyGg26X2nKUo4tkk4woDyYy7GE\nt7C+lp9xJxUnEPbVc40vsgzKuQKBgQDRsxyBPUaSJHn8x9DbMr++ED7yJrktQkF3\nApWtD853J/mwNGni9d4KmUBpPEMQWsbVgpfIemjujSNSa98NDNRUjSCXliBy1JyY\nHF1VTUJRZYOluDgQKVXgQPTXn1m/c8Q5yIVjweM7ONiLZeGoVRK7d2toT2oZ+yHU\nW/OIkydEaQKBgDFYgjtacJEWHWjPP5swoLayZ+wv4MSlw+vokKoSVi07BRyHR7Nc\nNSW9Xm+n+sW4/9Avf8gxPETMybAzmfRZKltJ4XgVj+9hO/4xxH6t/vec9NC8jgt7\nwe5FC2WV6zglNrRioNwHwPhYw4Ek2rAiX8G8Ip+h57OyrwbIptl/7k/ZAoGAHNA8\nkXGG+duzO02FYCkX+Zin3YP+m75n2l9ri40JdIv0ngaFqh7YdKJcHFmgaWXfvkSk\ncHKJaoXQHaoeyt9BaaC+orWJHd4i6i+zj13/R8noDeRDJ81WNGsYeWw227yfcMUh\ntvRUMbX84yKLoCKYYVPmWT3YOVutaU19J/34PkkCgYEAwY+uABal1IzwjQa6Ohka\nV4LMb5UaVvQ/CJv+Nq7SXZCkWYJ4tmd1AvVM7yUIW5l4RPg4E43IwnUD2xmk0xfk\nXCuWf0EPM1ukXT2xSiaPi87E2ivehZoSNhWS1LKxJpYh20SzZKvunfspP3rz2kF6\nkEab9HKbv4LSsxDOZZVT5f8=\n-----END PRIVATE KEY-----\n'
+    client_email: 'firebase-adminsdk@hydration-v2.iam.gserviceaccount.com',
+    private_key: '-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQD0umQ49AwytYnj\nBJo4lqeKnoJAjnZ9WweAoOutzP/f6mB4CqWgvsKchS9xQXq+jay0EpBudxhFcfaK\n1Oj3GByv1mna1VbTWjZ8PSWg4gxTJuuGFLZnx5AGKz7trN53jWlLhJGZAJK3HBxf\nq4evgLjNKYu7JL/UuB/dlVJ1sHfndHTzL1NkTZLItmCX1uoVVrMTTALC0ondw4Ew\nNhEc8MlsisXBU6QZ/uruI63+qTVhY1aKfek5JyuihCSpH2HhZBePwCU8L7P1LVPb\njtl3T7NbdtBUl0K8V6y/3JrfPXSpsSaJXy/T3OYu6J9ICM9eh9HwhkuRpFBbYAvN\n18MaF2O5AgMBAAECggEAEySza0sX2y2dNB9riuqp/2tnx/H87dBdlV/BH87N4y+b\nzTgT/a9+XK0EaYkUN2ywqkNbffCd+uyvuuttr8p4j/6nOCGBEbZYVb6Yv21/Rk/g\nk5PyMssHBpyCZygjHNn4dxpPI1dKor01sPwjeISKsC3ESubUhKjEgVpJYYBk2Lt5\nsbYG2l7+Xb6VFX6yo/hfRUOhKZt69SB4emf/HEBBWLMNYlxzAvUt3ZJH9EkzbAX8\n+wAS9adt/ITK0gEVLpVJn+tUVETr7eu5EJA5dNZNkB4eGKUfu0tjJ/Y9faAzYE7e\np2PWnW3s6gwzj1jeGx2o/yk6Er9RXwkFE6qcJR3CSwKBgQD/aRG0NGj48pm3/5PO\nBOuYj84gPr6B47aCqNXJOEIpFC3FqjOCWAU9FM7oyDCEtdG7FtNg0LsIaqrPac7m\nXKazSvWV92ZnwzVOoh42DPSbqwkFglNJPRlTN1Jm9ViAIqP0xI7gJW4NtbhTQbVI\nv5nK7mlaU58rgagRCXmfu2FfawKBgQD1SwKAx+H3p8X6KZBHpoCQdQPeTzaVhEdj\nzm/pAFqNnwdUdmmx4SBQWujH+x0yJQTivKVRBE4X/CkqKYWbEfZIt+W82xuiGBGw\nRJYdYe22HfSvcWcJR/Ux8PAAPGewaeBUCY1FZ/IJcAT/HrLunVfv8kwFV9FakIrB\noVpT0ngGawKBgQC5xH8G9fO/1hwuMysa9oMxRK8kzt4bdTeDEy/jmhKs9CtSkLfE\nPycYRTE1KJ35eJEiJbj6uva+aW7xS0EcVhk9YPD88aO/JsF3/vxATe3/50e5hQ/0\nvgbUevFpR1vmXsuntOtCZpcES77Ud39WeV1vtzZTZ2zm5PgL5DtdDZoGHwKBgDOw\nNLzSYel/7xYCACc5DMpj/gawhn4HO8vqSma87lf9dNv1f9w95kNIhNjvL33LkzX8\nLpHd6F7hggMicMb2iAFWzxB202Ha1I9iRIe4hRDlSxRVPzMTeLWnYcuK7wabqOvM\nf3pqpvQaKNNhsq7ZdRhY5HATy0fcQYD/8TrMlQI1AoGBAIupXn93V7dBSZHtkENl\nvauG3tP5ib+E/mFgmHrFybXdi2ElfYBFHAruzllO9Clm2dINKZS+hrILFjf3gWJz\nmwmqJ+sA4PHwIQ7R4PZ7K1dZ66peTIFAP7FJuxjQeHFQPTB6QdeDQoYuTOti0V7I\nTpwniYaJdN+Qx7B1jK6Dim48\n-----END PRIVATE KEY-----\n'
   }
 };
 
@@ -302,28 +302,97 @@ function getWbgt() {
     const lv = wbgtLevel_(nearest.wbgt);
     const result = {wbgt: nearest.wbgt, level: lv.label, color: lv.color, forecastTime: nearest.time, updatedAt, fetchedAt: Date.now()};
     props.setProperty(WBGT_CACHE_KEY, JSON.stringify(result));
+    upsertWbgtForecasts_(forecasts, updatedAt);
     return result;
   } catch(e) {
     return {error: e.message};
   }
 }
 
+// ===== 予測データをFirestoreにupsert（ドキュメントID = 日付_時刻） =====
+function upsertWbgtForecasts_(forecasts, updatedAt) {
+  const accessToken = getAccessToken_();
+  forecasts.forEach(f => {
+    const docId = `${f.date}_${f.time.replace(':', '')}`;
+    const url = `https://firestore.googleapis.com/v1/projects/${CONFIG.FCM_PROJECT_ID}/databases/(default)/documents/wbgtRecords/${docId}`;
+    const doc = {
+      fields: {
+        date: {stringValue: f.date},
+        time: {stringValue: f.time},
+        wbgt: {doubleValue: f.wbgt},
+        updatedAt: {stringValue: updatedAt}
+      }
+    };
+    UrlFetchApp.fetch(url, {
+      method: 'patch',
+      headers: {'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json'},
+      payload: JSON.stringify(doc),
+      muteHttpExceptions: true
+    });
+  });
+}
+
 function getWbgtMax(date) {
-  // Firestoreに保存されたWBGTデータから最大値を取得
-  // ※ v2ではWBGTはGASが直接返す（キャッシュから）
   try {
-    const props = PropertiesService.getScriptProperties();
-    const cached = props.getProperty(WBGT_CACHE_KEY);
-    if (!cached) return {max: null};
-    const obj = JSON.parse(cached);
-    return {max: obj.wbgt, level: obj.level, color: obj.color};
+    const accessToken = getAccessToken_();
+    const rows = queryWbgtRange_(accessToken, date, date);
+    if (!rows.length) return {max: null};
+    const max = Math.round(Math.max(...rows.map(r => r.wbgt)) * 10) / 10;
+    const lv = wbgtLevel_(max);
+    return {max, level: lv.label, color: lv.color};
   } catch(e) {
-    return {max: null};
+    return {max: null, error: e.message};
   }
 }
 
 function getWbgtWeek(startDate, endDate) {
-  return {dates: {}};
+  try {
+    const accessToken = getAccessToken_();
+    const rows = queryWbgtRange_(accessToken, startDate, endDate);
+    const result = {};
+    rows.forEach(r => {
+      if (!result[r.date] || r.wbgt > result[r.date].wbgt) {
+        const lv = wbgtLevel_(r.wbgt);
+        result[r.date] = {wbgt: Math.round(r.wbgt * 10) / 10, level: lv.label, color: lv.color};
+      }
+    });
+    return {dates: result};
+  } catch(e) {
+    return {dates: {}, error: e.message};
+  }
+}
+
+// ===== Firestoreから期間内のWBGTレコードを取得 =====
+function queryWbgtRange_(accessToken, startDate, endDate) {
+  const url = `https://firestore.googleapis.com/v1/projects/${CONFIG.FCM_PROJECT_ID}/databases/(default)/documents:runQuery`;
+  const query = {
+    structuredQuery: {
+      from: [{collectionId: 'wbgtRecords'}],
+      where: {
+        compositeFilter: {
+          op: 'AND',
+          filters: [
+            {fieldFilter: {field: {fieldPath: 'date'}, op: 'GREATER_THAN_OR_EQUAL', value: {stringValue: startDate}}},
+            {fieldFilter: {field: {fieldPath: 'date'}, op: 'LESS_THAN_OR_EQUAL', value: {stringValue: endDate}}}
+          ]
+        }
+      }
+    }
+  };
+  const res = UrlFetchApp.fetch(url, {
+    method: 'post',
+    headers: {'Authorization': `Bearer ${accessToken}`, 'Content-Type': 'application/json'},
+    payload: JSON.stringify(query),
+    muteHttpExceptions: true
+  });
+  const results = JSON.parse(res.getContentText());
+  return results
+    .filter(r => r.document)
+    .map(r => ({
+      date: r.document.fields?.date?.stringValue,
+      wbgt: Number(r.document.fields?.wbgt?.doubleValue ?? r.document.fields?.wbgt?.integerValue ?? 0)
+    }))
+    .filter(r => r.date);
 }
 
 function getHolidaysStatic(startDate, endDate) {
