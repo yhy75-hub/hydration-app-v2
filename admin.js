@@ -2,12 +2,12 @@
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbyyM6laojvUVhMbKvytgUj2U3_JmNrUWcDFvteMljfbJ0kar6udWzYa0WG_SslACRWC/exec';
 const ADMIN_PIN = '1423';
 const FIREBASE_CONFIG = {
-  apiKey: 'AIzaSyAX1QmJoIVN67GKMoXV1oIbNmV1bk-E2aM',
-  authDomain: 'hydration-850bd.firebaseapp.com',
-  projectId: 'hydration-850bd',
-  storageBucket: 'hydration-850bd.firebasestorage.app',
-  messagingSenderId: '385339912693',
-  appId: '1:385339912693:web:4db23ab0e1e6f8c35630bc'
+  apiKey: 'AIzaSyD2rPXVNfX-Rr4ggmjds9pLm2aWk8A52zg',
+  authDomain: 'hydration-v2.firebaseapp.com',
+  projectId: 'hydration-v2',
+  storageBucket: 'hydration-v2.firebasestorage.app',
+  messagingSenderId: '347969374865',
+  appId: '1:347969374865:web:b7e47a8ecd0a2de1d8cd30'
 };
 const VAPID_KEY = 'BF3hSqNizcMk5kYnP7-c-nneSnNIh8cCMQdCp-kV0UP6AmsbWSd7OB06YQ3yC23Ds86ykT-CNm94UIgEYCxMHEw';
 
