@@ -132,9 +132,8 @@ async function loadTodayRecords() {
   try {
     const snap = await recordsCol
       .where('date', '==', today)
-      .orderBy('createdAt', 'asc')
       .get();
-    const records = snap.docs.map(d => d.data());
+    const records = snap.docs.map(d => d.data()).sort((a, b) => (a.time || '').localeCompare(b.time || ''));
     const deptRecords = records.filter(r =>
       (r.dept || getMemberDept(r.name)) === state.dept
     );
@@ -151,9 +150,8 @@ async function loadHistoryRecords(date) {
   const snap = await recordsCol
     .where('date', '==', date)
     .where('name', '==', state.member)
-    .orderBy('createdAt', 'asc')
     .get();
-  renderRecords('history-records', snap.docs.map(d => d.data()));
+  renderRecords('history-records', snap.docs.map(d => d.data()).sort((a, b) => (a.time || '').localeCompare(b.time || '')));
 }
 
 // ===== 記録レンダリング =====

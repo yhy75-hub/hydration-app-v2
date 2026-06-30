@@ -137,9 +137,8 @@ const Admin = {
       const snap = await recordsCol
         .where('date', '>=', startStr)
         .where('date', '<=', endStr)
-        .orderBy('date', 'asc')
         .get();
-      allWeekRecords = snap.docs.map(d => d.data());
+      allWeekRecords = snap.docs.map(d => d.data()).sort((a, b) => a.date.localeCompare(b.date));
 
       // 休日・WBGT は GAS から取得（変更なし）
       const [holRes, wbgtRes] = await Promise.all([
@@ -242,9 +241,8 @@ const Admin = {
 
     const snap = await recordsCol
       .where('date', '==', currentDay)
-      .orderBy('createdAt', 'asc')
       .get();
-    allDayRecords = snap.docs.map(d => d.data());
+    allDayRecords = snap.docs.map(d => d.data()).sort((a, b) => (a.time || '').localeCompare(b.time || ''));
 
     this.applyDayFilter();
     this.loadDayWbgt();
