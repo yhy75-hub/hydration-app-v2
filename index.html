@@ -68,18 +68,37 @@
     <!-- 記録タブ -->
     <section id="tab-record" class="tab-content active">
       <div class="card">
-        <div class="card-label-row">
-          <span class="card-label">部署 / メンバー</span>
+        <div class="dept-row">
+          <div class="card-label" style="margin:0">部署</div>
+          <div id="dept-selector"></div>
         </div>
-        <div id="dept-selector"></div>
-        <div id="member-select" class="member-grid" style="margin-top:10px"></div>
+        <div class="card-label" style="margin-top:12px">あなたの名前</div>
+        <div id="member-select" class="member-grid"></div>
+      </div>
+
+      <div class="card wbgt-card" id="wbgt-card">
+        <div class="wbgt-card-label">🌡 現在の暑さ指数（三国）</div>
+        <div id="wbgt-card-body" class="wbgt-card-body">
+          <span class="wbgt-card-loading">読み込み中...</span>
+        </div>
       </div>
 
       <div class="card record-card">
         <button class="btn-drink" onclick="App.openRecordModal()">
           <span class="btn-drink-icon">💧</span>
-          <span class="btn-drink-text">水分補給を記録する</span>
+          <span class="btn-drink-text">水分を摂った！</span>
         </button>
+      </div>
+
+      <div class="card">
+        <div class="holiday-row">
+          <span style="font-size:.9rem;font-weight:600;">🏖 今日は休み（有給など）</span>
+          <label class="toggle-wrap">
+            <input type="checkbox" id="holiday-toggle" onchange="App.toggleHoliday(this.checked)">
+            <span class="toggle"></span>
+          </label>
+        </div>
+        <div id="holiday-hint" class="hint">ONにすると今日の通知が届かないよ</div>
       </div>
 
       <div class="card">
@@ -87,7 +106,7 @@
           <span class="card-label">今日の記録</span>
           <span id="last-updated" class="last-updated"></span>
         </div>
-        <div id="today-records" class="record-list"></div>
+        <div id="today-records" class="record-list"><div class="empty-msg">まだ記録がないよ</div></div>
       </div>
     </section>
 

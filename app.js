@@ -175,13 +175,21 @@ function renderRecords(elId, records) {
 }
 
 // ===== WBGT =====
+const WBGT_COLORS = { '危険': '#ef4444', '厳重警戒': '#f97316', '警戒': '#f59e0b', '注意': '#84cc16', '安全': '#22c55e' };
 async function loadWbgt() {
   try {
     const res = await fetch(`${CONFIG.GAS_URL}?action=getWbgt&_t=${Date.now()}`, { cache: 'no-store' });
     const data = await res.json();
     if (data.wbgt != null) {
+      const color = WBGT_COLORS[data.level] || '#64748b';
       document.getElementById('wbgt-header').innerHTML =
         `<span class="wbgt-pill">🌡 ${data.wbgt}℃ <span class="wbgt-level">${data.level}</span></span>`;
+      document.getElementById('wbgt-card-body').innerHTML = `
+        <div class="wbgt-card-val" style="color:${color}">${data.wbgt}℃</div>
+        <div>
+          <div class="wbgt-card-level" style="color:${color}">${data.level}</div>
+          <div class="wbgt-card-sub">熱中症指数（三国観測）</div>
+        </div>`;
     }
   } catch (e) { /* silent */ }
 }
