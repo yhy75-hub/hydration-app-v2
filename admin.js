@@ -120,6 +120,7 @@ const Admin = {
     btn.classList.add('active');
     document.getElementById('tab-' + tab).classList.add('active');
     if (tab === 'trend') this.renderTrendChart();
+    if (tab === 'holidays') this.loadHolidays();
   },
 
   // ===== 週次 =====
@@ -520,5 +521,53 @@ function getDatesInRange(startStr, endStr) {
   while (cur <= end) { dates.push(toDateStr(cur)); cur.setDate(cur.getDate() + 1); }
   return dates;
 }
+
+// ===== 休日管理 =====
+const holidaysCol = db.collection('holidays');
+
+const HolidayAdmin = {
+  async load() {
+    const el = document.getElementById('holiday-list');
+    try {
+      const snap = await holidaysCol.orderBy('date', 'asc').get();
+      if (snap.empty) { el.innerHTML = '<div class="holiday-empty">登録された休日はないよ</div>'; return; }
+      el.innerHTML = snap.docs.map(doc => {
+        const d = doc.data();
+        return `<div class="holiday-row-item">
+          <span class="holiday-date">${d.date}</span>
+          <span class="holiday-type-badge">${d.type || ''}</span>
+          <span class="holiday-memo">${d.memo || ''}</span>
+          <button class="btn-holiday-del" onclick="HolidayAdmin.delete('${doc.id}')">削除</button>
+        </div>`;
+      }).join('');
+    } catch (e) {
+      el.innerHTML = '<div class="holiday-empty">読み込みエラー</div>';
+      console.error(e);
+    }
+  },
+
+  async add() {
+    const date = document.getElementById('holiday-input-date').value;
+    const type = document.getElementById('holiday-input-type').value;
+    const memo = document.getElementById('holiday-input-memo').value.trim();
+    if (!date) { alert('日付を選んでね'); return; }
+    await holidaysCol.doc(date).set({ date, type, memo });
+    document.getElementById('holiday-input-date').value = '';
+    document.getElementById('holiday-input-memo').value = '';
+    this.load();
+  },
+
+  async delete(id) {
+    if (!confirm(`${id} を削除してもいい？`)) return;
+    await holidaysCol.doc(id).delete();
+    this.load();
+  }
+};
+
+// Admin に委譲
+Object.assign(Admin, {
+  loadHolidays() { HolidayAdmin.load(); },
+  addHoliday()   { HolidayAdmin.add(); }
+});
 
 window.addEventListener('DOMContentLoaded', () => Pin.init());

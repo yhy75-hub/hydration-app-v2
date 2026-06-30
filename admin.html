@@ -50,6 +50,7 @@
     <button class="tab-btn active" onclick="Admin.switchTab('week', this)">週次ビュー</button>
     <button class="tab-btn" onclick="Admin.switchTab('day', this)">日次ビュー</button>
     <button class="tab-btn" onclick="Admin.switchTab('trend', this)">📈 トレンド</button>
+    <button class="tab-btn" onclick="Admin.switchTab('holidays', this)">📅 休日</button>
   </nav>
 
   <div id="admin-dept-filter" class="admin-dept-filter"></div>
@@ -101,6 +102,38 @@
           <thead><tr><th>時刻</th><th>名前</th><th>部署</th><th>体調</th><th>コメント</th></tr></thead>
           <tbody id="day-body"></tbody>
         </table>
+      </div>
+    </section>
+
+    <!-- 休日管理 -->
+    <section id="tab-holidays" class="tab-content">
+      <div class="card" style="margin:16px">
+        <div class="card-label" style="margin-bottom:12px">📅 休日を追加</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end">
+          <div>
+            <div style="font-size:.78rem;color:var(--sub);margin-bottom:4px">日付</div>
+            <input type="date" id="holiday-input-date" class="holiday-input-date">
+          </div>
+          <div>
+            <div style="font-size:.78rem;color:var(--sub);margin-bottom:4px">区分</div>
+            <select id="holiday-input-type" class="holiday-input-type">
+              <option>祝日</option>
+              <option>会社休日</option>
+              <option>夏季休暇</option>
+              <option>年末年始</option>
+              <option>その他</option>
+            </select>
+          </div>
+          <div style="flex:1;min-width:120px">
+            <div style="font-size:.78rem;color:var(--sub);margin-bottom:4px">メモ（任意）</div>
+            <input type="text" id="holiday-input-memo" class="holiday-input-memo" placeholder="例：元日">
+          </div>
+          <button class="btn-holiday-add" onclick="Admin.addHoliday()">追加</button>
+        </div>
+      </div>
+      <div class="card" style="margin:0 16px 16px">
+        <div class="card-label" style="margin-bottom:12px">登録済み休日</div>
+        <div id="holiday-list" class="holiday-list">読み込み中...</div>
       </div>
     </section>
 
