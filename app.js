@@ -36,7 +36,11 @@ const tokensCol  = db.collection('tokens');
 const Pin = {
   _entered: '',
   init() {
-    if (localStorage.getItem('pin_auth') === '1') return;
+    if (localStorage.getItem('pin_auth') === '1') {
+      document.getElementById('pin-screen').classList.add('hidden');
+      document.getElementById('app').classList.remove('hidden');
+      return;
+    }
     document.getElementById('pin-screen').classList.remove('hidden');
   },
   input(num) {
@@ -56,6 +60,7 @@ const Pin = {
     if (this._entered === PIN_CODE) {
       localStorage.setItem('pin_auth', '1');
       document.getElementById('pin-screen').classList.add('hidden');
+      document.getElementById('app').classList.remove('hidden');
     } else {
       document.getElementById('pin-error').classList.remove('hidden');
       this._entered = '';
