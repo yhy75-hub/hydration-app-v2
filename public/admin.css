@@ -1,0 +1,182 @@
+/* ===== 共通 ===== */
+*, *::before, *::after {box-sizing:border-box; margin:0; padding:0;}
+:root {
+  --primary:#0ea5e9; --primary-dark:#0284c7;
+  --bg:#f0f9ff; --card:#fff;
+  --text:#0f172a; --sub:#64748b;
+  --border:#e2e8f0;
+  --ok:#22c55e; --warn:#f59e0b; --danger:#ef4444; --off:#94a3b8;
+  --radius:12px; --shadow:0 2px 12px rgba(0,0,0,.08);
+}
+html {font-size:16px; -webkit-text-size-adjust:100%;}
+body {
+  font-family:-apple-system,BlinkMacSystemFont,'Hiragino Kaku Gothic ProN',sans-serif;
+  background:var(--bg); color:var(--text); min-height:100vh;
+}
+
+/* ===== PINロック ===== */
+.pin-screen {
+  position:fixed; inset:0; z-index:999;
+  background:linear-gradient(160deg,#0ea5e9,#0369a1);
+  display:flex; align-items:center; justify-content:center;
+}
+.pin-box {text-align:center; color:#fff; width:100%; max-width:320px; padding:0 24px;}
+.pin-icon {font-size:3rem; margin-bottom:8px;}
+.pin-title {font-size:1.4rem; font-weight:700; margin-bottom:4px;}
+.pin-subtitle {font-size:.9rem; opacity:.8; margin-bottom:32px;}
+.pin-dots {display:flex; justify-content:center; gap:16px; margin-bottom:12px;}
+.pin-dot {width:16px; height:16px; border-radius:50%; background:rgba(255,255,255,.3); transition:background .15s;}
+.pin-dot.filled {background:#fff;}
+.pin-error {color:#fca5a5; font-size:.85rem; margin-bottom:8px;}
+.pin-error.hidden {display:none;}
+.pin-keypad {display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-top:24px;}
+.pin-key {padding:18px; border:none; border-radius:50%; background:rgba(255,255,255,.2); color:#fff; font-size:1.3rem; font-weight:600; cursor:pointer;}
+.pin-key:active {background:rgba(255,255,255,.4);}
+.pin-key-empty {background:transparent !important; cursor:default;}
+
+/* ===== ヘッダー ===== */
+.header {background:var(--primary); color:#fff; padding:14px 16px; position:sticky; top:0; z-index:100; box-shadow:0 2px 8px rgba(14,165,233,.3);}
+.header-inner {display:flex; justify-content:space-between; align-items:center;}
+.header-title {font-size:1.1rem; font-weight:700;}
+.header-link {color:rgba(255,255,255,.85); font-size:.85rem; text-decoration:none;}
+
+/* ===== タブ ===== */
+.tab-nav {display:flex; background:#fff; border-bottom:1px solid var(--border); position:sticky; top:48px; z-index:90;}
+.tab-btn {flex:1; padding:12px 0; border:none; background:none; font-size:.85rem; color:var(--sub); cursor:pointer; border-bottom:3px solid transparent;}
+.tab-btn.active {color:var(--primary); border-bottom-color:var(--primary); font-weight:700;}
+
+/* ===== メイン ===== */
+.main {padding:16px; max-width:900px; margin:0 auto;}
+.tab-content {display:none;}
+.tab-content.active {display:block;}
+
+/* ===== ツールバー ===== */
+.toolbar {display:flex; align-items:center; gap:8px; margin-bottom:12px; flex-wrap:wrap;}
+.nav-btn {padding:6px 14px; border:1px solid var(--border); border-radius:8px; background:#fff; cursor:pointer; font-size:.9rem;}
+.today-btn {padding:6px 14px; border:none; border-radius:8px; background:var(--primary); color:#fff; cursor:pointer; font-size:.85rem; font-weight:600;}
+.csv-btn {padding:6px 14px; border:1px solid var(--border); border-radius:8px; background:#fff; cursor:pointer; font-size:.85rem; margin-left:auto;}
+.week-label {font-size:.9rem; font-weight:600; color:var(--text);}
+.day-picker {padding:6px 12px; border:1px solid var(--border); border-radius:8px; font-size:.9rem; background:#fff;}
+
+/* ===== テーブル共通 ===== */
+.table-wrap {overflow-x:auto; border-radius:var(--radius); box-shadow:var(--shadow); margin-bottom:16px;}
+.week-table, .day-table {width:100%; border-collapse:collapse; background:#fff; font-size:.85rem;}
+.week-table th, .week-table td, .day-table th, .day-table td {
+  padding:8px 10px; text-align:center; border-bottom:1px solid var(--border); white-space:nowrap;
+}
+.week-table th {background:#f8fafc; font-weight:600; color:var(--sub); font-size:.78rem;}
+.day-table th {background:#f8fafc; font-weight:600; color:var(--sub);}
+.col-name {text-align:left !important;}
+.name-cell {text-align:left; font-weight:600; font-size:.82rem; color:var(--text);}
+
+/* ===== バッジ ===== */
+.badge {display:inline-block; padding:3px 8px; border-radius:100px; font-size:.78rem; font-weight:700;}
+.badge-ok {background:#dcfce7; color:#166534;}
+.badge-warn {background:#fef9c3; color:#713f12;}
+.badge-danger {background:#fee2e2; color:#7f1d1d;}
+.badge-none {background:#f1f5f9; color:#94a3b8;}
+.badge-off {background:#f1f5f9; color:#94a3b8;}
+.cell-btn {background:none; border:none; cursor:pointer; padding:0;}
+
+/* ===== 日次ヘッダー系 ===== */
+.date-header {font-size:.8rem; font-weight:700; color:var(--text);}
+.dow-header {font-size:.75rem; font-weight:600;}
+.dow-sat {color:#3b82f6;}
+.dow-sun {color:#ef4444;}
+.wbgt-week-val {font-size:.7rem; font-weight:700; margin-top:2px;}
+.wbgt-week-empty {color:#94a3b8;}
+
+/* ===== サマリー ===== */
+.summary-cards {display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;}
+.summary-card {
+  flex:1; min-width:100px; background:#fff; border-radius:var(--radius);
+  padding:12px; box-shadow:var(--shadow); text-align:center;
+}
+.s-name {font-size:.8rem; font-weight:700; color:var(--sub); margin-bottom:4px; white-space:nowrap;}
+.s-count {font-size:1.4rem; font-weight:800; color:var(--ok);}
+.s-label {font-size:.7rem; color:var(--sub);}
+.s-cond {font-size:.72rem; color:var(--sub); margin-top:4px;}
+
+/* ===== 日次サマリー ===== */
+.day-summary {display:flex; gap:12px; margin-bottom:12px; flex-wrap:wrap;}
+.day-stat {flex:1; min-width:80px; background:#fff; border-radius:var(--radius); padding:10px; box-shadow:var(--shadow); text-align:center;}
+.ds-num {font-size:1.5rem; font-weight:800; color:var(--primary);}
+.ds-label {font-size:.72rem; color:var(--sub);}
+
+/* ===== WBGT バー ===== */
+.day-wbgt-bar {padding:6px 4px; font-size:.85rem; margin-bottom:8px; min-height:28px;}
+
+/* ===== メンバーフィルター ===== */
+.member-filter {display:flex; gap:6px; flex-wrap:wrap; margin-bottom:10px;}
+.filter-btn {padding:5px 12px; border-radius:100px; border:1px solid var(--border); background:#fff; cursor:pointer; font-size:.8rem; color:var(--sub);}
+.filter-btn.active {background:var(--primary); color:#fff; border-color:var(--primary);}
+
+/* ===== 体調セル ===== */
+.cond-cell {display:flex; align-items:center; gap:4px; justify-content:center;}
+
+/* ===== 凡例 ===== */
+.legend {display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px;}
+.leg-item {display:flex; align-items:center; gap:6px; font-size:.78rem; color:var(--sub);}
+
+/* ===== モーダル ===== */
+.modal-overlay {position:fixed; inset:0; background:rgba(0,0,0,.5); display:flex; align-items:center; justify-content:center; z-index:200; padding:16px;}
+.modal-overlay.hidden {display:none;}
+.modal {background:#fff; border-radius:var(--radius); padding:20px; width:100%; max-width:500px; max-height:80vh; overflow-y:auto;}
+.modal-title {font-size:1rem; font-weight:700; margin-bottom:16px;}
+.modal-close {width:100%; margin-top:16px; padding:10px; border:1px solid var(--border); border-radius:8px; background:#fff; cursor:pointer; font-size:.9rem;}
+
+/* ===== 部署タグ ===== */
+.dept-tag {
+  display:inline-block; padding:2px 8px; border-radius:100px;
+  background:#e0f2fe; color:#0369a1; font-size:.75rem; font-weight:600;
+}
+
+/* ===== 管理者部署フィルター ===== */
+.admin-dept-filter {
+  display:flex; gap:8px; padding:10px 16px; flex-wrap:wrap;
+  background:#fff; border-bottom:1px solid var(--border);
+}
+.dept-filter-btn {
+  padding:5px 16px; border-radius:100px; border:2px solid var(--border);
+  background:#fff; color:var(--sub); font-size:.82rem; font-weight:600;
+  cursor:pointer; transition:all .15s;
+}
+.dept-filter-btn.active {
+  border-color:var(--primary); background:var(--primary); color:#fff;
+}
+
+/* ===== 管理者通知バー ===== */
+.admin-notify-bar {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:8px 16px; background:#fef9c3; border-bottom:1px solid #fde68a;
+  font-size:.82rem; gap:8px; flex-wrap:wrap;
+}
+.admin-notify-btn {
+  padding:5px 14px; border:none; border-radius:8px;
+  background:var(--primary); color:#fff; font-size:.82rem; font-weight:600; cursor:pointer;
+}
+
+/* ===== トレンドグラフ ===== */
+.trend-header {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 16px; background:#fff; border-bottom:1px solid var(--border);
+  flex-wrap:wrap; gap:8px;
+}
+.trend-chart {
+  background:#0f172a; border-radius:var(--radius);
+  margin:16px; padding:8px; overflow:hidden;
+}
+.trend-legend {
+  display:flex; justify-content:center; gap:16px; flex-wrap:wrap;
+  margin:0 16px 8px;
+}
+.trend-leg-item {
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:.8rem; color:var(--sub);
+}
+.trend-leg-dot {
+  width:12px; height:12px; border-radius:3px; display:inline-block;
+}
+.trend-summary {
+  display:flex; gap:12px; padding:0 16px 16px; flex-wrap:wrap;
+}
