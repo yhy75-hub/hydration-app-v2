@@ -1,5 +1,5 @@
 // ===== 【要変更】設定 =====
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbyyM6laojvUVhMbKvytgUj2U3_JmNrUWcDFvteMljfbJ0kar6udWzYa0WG_SslACRWC/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbw9AbSNrKe6Uox6yWZd883UTT3NiybtiqkcgHbtBve0ksD3QvELgilX12jxkZQH2Oq4/exec';
 const ADMIN_PIN = '1423';
 const FIREBASE_CONFIG = {
   apiKey: 'AIzaSyD2rPXVNfX-Rr4ggmjds9pLm2aWk8A52zg',
