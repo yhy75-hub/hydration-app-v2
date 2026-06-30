@@ -9,7 +9,7 @@ const CONFIG = {
     appId: '1:385339912693:web:4db23ab0e1e6f8c35630bc'
   },
   VAPID_KEY: 'BF3hSqNizcMk5kYnP7-c-nneSnNIh8cCMQdCp-kV0UP6AmsbWSd7OB06YQ3yC23Ds86ykT-CNm94UIgEYCxMHEw',
-  GAS_URL: 'https://script.google.com/macros/s/AKfycbxeueMWOxm-wLt3G6T70Oc6zldEqTTBXBQeqyx5dewwB-2vnXZoJBRHsdT847Tr81hJ/exec'
+  GAS_URL: 'https://script.google.com/macros/s/AKfycbyyM6laojvUVhMbKvytgUj2U3_JmNrUWcDFvteMljfbJ0kar6udWzYa0WG_SslACRWC/exec'
 };
 const PIN_CODE = '4277';
 
