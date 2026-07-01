@@ -4,6 +4,7 @@
 // ============================================================
 
 const MIGRATE_CONFIG = {
+  SS_ID: '18rKrnh7fFlhRlA57N1iKL15nnT9kmNNrFNBdfNG1o0A',
   FIRESTORE_PROJECT: 'hydration-v2',
   FIRESTORE_API_KEY: 'AIzaSyD2rPXVNfX-Rr4ggmjds9pLm2aWk8A52zg',
   SHEET_RECORDS:  '記録',        // シート名を必要に応じて変更
@@ -21,7 +22,7 @@ function migrateAll() {
 // ===== 記録データ移行 =====
 // ヘッダー: 日付 | 時刻 | 名前 | 体調 | コメント | 登録日時 | チーム | 塩分補給
 function migrateRecords() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SpreadsheetApp.openById(MIGRATE_CONFIG.SS_ID);
   const sheet = ss.getSheetByName(MIGRATE_CONFIG.SHEET_RECORDS);
   if (!sheet) { Logger.log('シート「記録」が見つかりません'); return 0; }
 
@@ -75,7 +76,7 @@ function migrateRecords() {
 // ===== 休日マスター移行 =====
 // ヘッダー: 日付 | 区分 | メモ
 function migrateHolidays() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SpreadsheetApp.openById(MIGRATE_CONFIG.SS_ID);
   const sheet = ss.getSheetByName(MIGRATE_CONFIG.SHEET_HOLIDAYS);
   if (!sheet) { Logger.log('シート「休日マスター」が見つかりません'); return 0; }
 
