@@ -19,6 +19,45 @@ function migrateAll() {
   Logger.log(`=== 移行完了 records:${r} holidays:${h} ===`);
 }
 
+// ===== 前回の移行データ（migratedFromV1=true）を削除してからやり直す =====
+function redoMigration() {
+  const deleted = deleteMigratedRecords_();
+  Logger.log(`削除: ${deleted}件`);
+  migrateAll();
+}
+
+function deleteMigratedRecords_() {
+  const query = {
+    structuredQuery: {
+      from: [{ collectionId: 'records' }],
+      where: {
+        fieldFilter: {
+          field: { fieldPath: 'migratedFromV1' },
+          op: 'EQUAL',
+          value: { booleanValue: true }
+        }
+      }
+    }
+  };
+  const queryUrl = `https://firestore.googleapis.com/v1/projects/${MIGRATE_CONFIG.FIRESTORE_PROJECT}/databases/(default)/documents:runQuery?key=${MIGRATE_CONFIG.FIRESTORE_API_KEY}`;
+  const res = UrlFetchApp.fetch(queryUrl, {
+    method: 'POST',
+    contentType: 'application/json',
+    payload: JSON.stringify(query),
+    muteHttpExceptions: true
+  });
+  const results = JSON.parse(res.getContentText());
+  const docNames = results.filter(r => r.document).map(r => r.document.name);
+
+  let count = 0;
+  docNames.forEach(name => {
+    const url = `https://firestore.googleapis.com/v1/${name}?key=${MIGRATE_CONFIG.FIRESTORE_API_KEY}`;
+    const delRes = UrlFetchApp.fetch(url, { method: 'DELETE', muteHttpExceptions: true });
+    if (delRes.getResponseCode() === 200) count++;
+  });
+  return count;
+}
+
 // ===== 記録データ移行 =====
 // ヘッダー: 日付 | 時刻 | 名前 | 体調 | コメント | 登録日時 | チーム | 塩分補給
 function migrateRecords() {
@@ -39,7 +78,7 @@ function migrateRecords() {
     const doc = {
       fields: {
         date:      { stringValue: dateStr },
-        time:      { stringValue: String(time || '').substring(0, 5) },
+        time:      { stringValue: formatTime_(time) },
         name:      { stringValue: String(name) },
         dept:      { stringValue: String(team || '') },
         condition: { stringValue: String(condition || '未選択') },
@@ -115,6 +154,13 @@ function migrateHolidays() {
   }
   Logger.log(`休日移行完了: ${count}件`);
   return count;
+}
+
+// ===== 時刻フォーマット =====
+function formatTime_(val) {
+  if (!val) return '';
+  if (val instanceof Date) return Utilities.formatDate(val, 'Asia/Tokyo', 'HH:mm');
+  return String(val).substring(0, 5);
 }
 
 // ===== 日付フォーマット =====
