@@ -12,7 +12,7 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-const APP_URL = '/hydration-app-v2/';
+const APP_URL = '/hydration-app/';
 
 messaging.onBackgroundMessage(payload => {
   if (payload.notification) return;
@@ -20,8 +20,8 @@ messaging.onBackgroundMessage(payload => {
   const body  = (payload.data && payload.data.body)  || 'チェックしてね';
   self.registration.showNotification(title, {
     body,
-    icon: '/hydration-app-v2/icons/icon-192.png',
-    badge: '/hydration-app-v2/icons/icon-192.png',
+    icon: '/hydration-app/icons/icon-192.png',
+    badge: '/hydration-app/icons/icon-192.png',
     tag: 'hydration',
     renotify: true,
     data: { url: APP_URL }

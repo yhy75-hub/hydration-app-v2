@@ -178,8 +178,8 @@ function sendFCM_(tokens, title, body, accessToken) {
         message: {
           token,
           webpush: {
-            notification: {title, body, icon: '/hydration-app-v2/icons/icon-192.png', tag: 'hydration', renotify: true},
-            fcm_options: {link: '/hydration-app-v2/'}
+            notification: {title, body, icon: '/hydration-app/icons/icon-192.png', tag: 'hydration', renotify: true},
+            fcm_options: {link: '/hydration-app/'}
           }
         }
       }),
