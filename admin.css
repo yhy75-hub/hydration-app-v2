@@ -65,7 +65,8 @@ body {
 .week-table th, .week-table td, .day-table th, .day-table td {
   padding:8px 10px; text-align:center; border-bottom:1px solid var(--border); white-space:nowrap;
 }
-.week-table th {background:#f8fafc; font-weight:600; color:var(--sub); font-size:.78rem;}
+.week-table th {background:var(--primary); font-weight:600; color:#fff; font-size:.78rem;}
+.week-table th.col-name {background:var(--primary-dark); text-align:left; padding-left:12px;}
 .day-table th {background:#f8fafc; font-weight:600; color:var(--sub);}
 .col-name {text-align:left !important;}
 .name-cell {text-align:left; font-weight:600; font-size:.82rem; color:var(--text);}
@@ -86,6 +87,13 @@ body {
 .dow-sun {color:#ef4444;}
 .wbgt-week-val {font-size:.7rem; font-weight:700; margin-top:2px;}
 .wbgt-week-empty {color:#94a3b8;}
+
+/* ===== 週次テーブルヘッダー（青背景用の上書き） ===== */
+.week-table th .date-header {color:#fff;}
+.week-table th .dow-header {color:rgba(255,255,255,.85);}
+.week-table th .dow-header.dow-sat {color:#bfdbfe;}
+.week-table th .dow-header.dow-sun {color:#fecaca;}
+.week-table th .wbgt-week-empty {color:rgba(255,255,255,.5);}
 
 /* ===== サマリー ===== */
 .summary-cards {display:flex; gap:10px; flex-wrap:wrap; margin-bottom:16px;}

@@ -494,7 +494,7 @@ function downloadCsv_(filename, rows) {
 }
 
 function wbgtHeaderColor_(level) {
-  return { 'ほぼ安全': '#16a34a', '注意': '#ca8a04', '警戒': '#ea580c', '厳重警戒': '#dc2626', '危険': '#dc2626' }[level] || 'var(--sub)';
+  return { 'ほぼ安全': '#bbf7d0', '注意': '#fef08a', '警戒': '#fed7aa', '厳重警戒': '#fecaca', '危険': '#fecaca' }[level] || '#ffffff';
 }
 
 function toDateStr(d) {
