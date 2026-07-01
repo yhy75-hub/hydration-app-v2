@@ -8,7 +8,8 @@ const MIGRATE_CONFIG = {
   FIRESTORE_PROJECT: 'hydration-v2',
   FIRESTORE_API_KEY: 'AIzaSyD2rPXVNfX-Rr4ggmjds9pLm2aWk8A52zg',
   SHEET_RECORDS:  '記録',        // シート名を必要に応じて変更
-  SHEET_HOLIDAYS: '休日マスター' // シート名を必要に応じて変更
+  SHEET_HOLIDAYS: '休日マスター', // シート名を必要に応じて変更
+  SHEET_WBGT:     'WBGT記録'     // シート名を必要に応じて変更
 };
 
 // ===== メイン実行関数 =====
@@ -16,7 +17,63 @@ function migrateAll() {
   Logger.log('=== 移行開始 ===');
   const r = migrateRecords();
   const h = migrateHolidays();
-  Logger.log(`=== 移行完了 records:${r} holidays:${h} ===`);
+  const w = migrateWbgt();
+  Logger.log(`=== 移行完了 records:${r} holidays:${h} wbgt:${w} ===`);
+}
+
+// ===== WBGT履歴移行 =====
+// ヘッダー: 日付 | 時刻 | WBGT | CSV更新日時
+function migrateWbgt() {
+  const ss = SpreadsheetApp.openById(MIGRATE_CONFIG.SS_ID);
+  const sheet = ss.getSheetByName(MIGRATE_CONFIG.SHEET_WBGT);
+  if (!sheet) { Logger.log('シート「WBGT記録」が見つかりません'); return 0; }
+
+  const rows = sheet.getDataRange().getValues();
+  let count = 0;
+
+  for (let i = 1; i < rows.length; i++) {
+    const [date, time, wbgt, csvUpdatedAt] = rows[i];
+    if (!date || wbgt === '' || wbgt == null) continue;
+
+    const dateStr = formatDate_(date);
+    const timeStr = formatTime_(time);
+    if (!dateStr || !timeStr) continue;
+
+    const docId = `${dateStr}_${timeStr.replace(':', '')}`;
+    const updatedAt = csvUpdatedAt instanceof Date
+      ? Utilities.formatDate(csvUpdatedAt, 'Asia/Tokyo', 'yyyy/MM/dd HH:mm')
+      : String(csvUpdatedAt || '');
+
+    const doc = {
+      fields: {
+        date:      { stringValue: dateStr },
+        time:      { stringValue: timeStr },
+        wbgt:      { doubleValue: Number(wbgt) },
+        updatedAt: { stringValue: updatedAt }
+      }
+    };
+
+    const url = `https://firestore.googleapis.com/v1/projects/${MIGRATE_CONFIG.FIRESTORE_PROJECT}/databases/(default)/documents/wbgtRecords/${docId}?key=${MIGRATE_CONFIG.FIRESTORE_API_KEY}`;
+    const res = UrlFetchApp.fetch(url, {
+      method: 'PATCH',
+      contentType: 'application/json',
+      payload: JSON.stringify(doc),
+      muteHttpExceptions: true
+    });
+
+    if (res.getResponseCode() === 200) {
+      count++;
+    } else {
+      Logger.log(`WBGT行${i+1} エラー: ${res.getContentText().substring(0, 200)}`);
+    }
+
+    if (i % 50 === 0) {
+      Logger.log(`WBGT ${i}/${rows.length - 1} 件処理中...`);
+      Utilities.sleep(500);
+    }
+  }
+  Logger.log(`WBGT移行完了: ${count}件`);
+  return count;
 }
 
 // ===== 前回の移行データ（migratedFromV1=true）を削除してからやり直す =====
