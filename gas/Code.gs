@@ -189,11 +189,19 @@ function sendFCM_(tokens, title, body, accessToken) {
 }
 
 // ===== 定時通知チェック（5分ごとトリガーで実行） =====
+// 通知シーズン: 6月〜9月のみ稼働（10月〜5月は自動休止）
+const NOTIFY_SEASON_START_MONTH = 6;  // 6月から
+const NOTIFY_SEASON_END_MONTH   = 9;  // 9月まで
+
 function checkAndNotify() {
   const now = new Date();
   const jst = new Date(now.getTime() + 9 * 3600 * 1000);
   const hhmm = jst.getUTCHours() * 100 + jst.getUTCMinutes();
   const today = Utilities.formatDate(jst, 'UTC', 'yyyy-MM-dd');
+
+  // シーズンオフ（10月〜5月）は通知しない
+  const month = jst.getUTCMonth() + 1;
+  if (month < NOTIFY_SEASON_START_MONTH || month > NOTIFY_SEASON_END_MONTH) return;
 
   // 土日チェック
   const dow = jst.getUTCDay();
